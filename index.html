@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veterinaria Patitas Felices</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navbar (visible solo después de login) -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary hidden" id="mainNavbar">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-paw me-2"></i>Veterinaria Patitas
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" id="navAppointment">
+                            <i class="fas fa-calendar-check me-1"></i>Cita Médica
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="navReports">
+                            <i class="fas fa-chart-bar me-1"></i>Reportes
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="navProfile">
+                            <i class="fas fa-user me-1"></i>Mis Datos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="navLogout">
+                            <i class="fas fa-sign-out-alt me-1"></i>Cerrar Sesión
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Módulo de Login -->
+    <div class="container" id="loginModule">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <div class="card login-card shadow">
+                    <div class="card-header text-center bg-primary text-white">
+                        <i class="fas fa-paw fa-3x mb-3"></i>
+                        <h2>Veterinaria Patitas Felices</h2>
+                    </div>
+                    
+                    <ul class="nav nav-tabs" id="authTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="login-tab" data-bs-toggle="tab" data-bs-target="#login" type="button">Iniciar Sesión</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="register-tab" data-bs-toggle="tab" data-bs-target="#register" type="button">Registrarse</button>
+                        </li>
+                    </ul>
+                    
+                    <div class="card-body tab-content p-4">
+                        <!-- Panel de Login -->
+                        <div class="tab-pane fade show active" id="login" role="tabpanel">
+                            <form id="loginForm">
+                                <div class="mb-3">
+                                    <label for="loginUsername" class="form-label">Usuario</label>
+                                    <input type="text" class="form-control" id="loginUsername" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="loginPassword" class="form-label">Contraseña</label>
+                                    <div class="input-group">
+                                        <input type="password" class="form-control" id="loginPassword" required>
+                                        <button class="btn btn-outline-secondary password-toggle" type="button">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" class="form-check-input" id="rememberMe">
+                                    <label class="form-check-label" for="rememberMe">Recordar sesión</label>
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100">Iniciar Sesión</button>
+                                <div class="text-center mt-3">
+                                    <a href="#" id="forgotPassword">¿Olvidaste tu contraseña?</a>
+                                </div>
+                            </form>
+                        </div>
+                        
+                        <!-- Panel de Registro -->
+                        <div class="tab-pane fade" id="register" role="tabpanel">
+                            <form id="registerForm">
+                                <div class="mb-3">
+                                    <label for="registerUsername" class="form-label">Usuario</label>
+                                    <input type="text" class="form-control" id="registerUsername" required>
+                                    <div class="invalid-feedback">Por favor ingresa un nombre de usuario válido</div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="registerEmail" class="form-label">Correo Electrónico</label>
+                                    <input type="email" class="form-control" id="registerEmail" required>
+                                    <div class="invalid-feedback">Por favor ingresa un correo válido</div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="registerPassword" class="form-label">Contraseña</label>
+                                    <div class="input-group">
+                                        <input type="password" class="form-control" id="registerPassword" required>
+                                        <button class="btn btn-outline-secondary password-toggle" type="button">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </div>
+                                    <div class="form-text">La contraseña debe tener exactamente 8 caracteres, incluyendo 1 mayúscula, 1 número y 1 símbolo (@#$...)</div>
+                                    <div class="invalid-feedback">La contraseña no cumple con los requisitos</div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="confirmPassword" class="form-label">Confirmar Contraseña</label>
+                                    <input type="password" class="form-control" id="confirmPassword" required>
+                                    <div class="invalid-feedback">Las contraseñas no coinciden</div>
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100">Registrarse</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Módulo de Citas Médicas -->
+    <div class="container hidden" id="appointmentModule">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="mb-0"><i class="fas fa-calendar-check me-2"></i>Solicitar Cita Médica</h3>
+                    </div>
+                    <div class="card-body">
+                        <form id="appointmentForm">
+                            <h4 class="mb-4"><i class="fas fa-user me-2"></i>Datos del Dueño</h4>
+                            <div class="row mb-3">
+                                <div class="col-md-6 mb-3 mb-md-0">
+                                    <label for="ownerName" class="form-label">Nombre Completo</label>
+                                    <input type="text" class="form-control" id="ownerName" required>
+                                    <div class="invalid-feedback">Por favor ingresa tu nombre completo</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="ownerPhone" class="form-label">Teléfono</label>
+                                    <input type="tel" class="form-control" id="ownerPhone" required>
+                                    <div class="invalid-feedback">Por favor ingresa un teléfono válido</div>
+                                </div>
+                            </div>
+                            
+                            <h4 class="mb-4"><i class="fas fa-paw me-2"></i>Datos de la Mascota</h4>
+                            <div class="row mb-3">
+                                <div class="col-md-6 mb-3 mb-md-0">
+                                    <label for="petName" class="form-label">Nombre</label>
+                                    <input type="text" class="form-control" id="petName" required>
+                                    <div class="invalid-feedback">Por favor ingresa el nombre de tu mascota</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="petType" class="form-label">Tipo de Mascota</label>
+                                    <select class="form-select" id="petType" required>
+                                        <option value="" selected disabled>Seleccione...</option>
+                                        <option value="perro">Perro</option>
+                                        <option value="gato">Gato</option>
+                                        <option value="ave">Ave</option>
+                                        <option value="roedor">Roedor</option>
+                                        <option value="otro">Otro</option>
+                                    </select>
+                                    <div class="invalid-feedback">Por favor selecciona un tipo</div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="appointmentDate" class="form-label">Fecha y Hora de la Cita</label>
+                                <input type="datetime-local" class="form-control" id="appointmentDate" required>
+                                <div class="invalid-feedback">Por favor selecciona una fecha y hora</div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="symptoms" class="form-label">Síntomas o Motivo de la Consulta</label>
+                                <textarea class="form-control" id="symptoms" rows="3" required></textarea>
+                                <div class="invalid-feedback">Por favor describe los síntomas</div>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary w-100 py-3">
+                                <i class="fas fa-calendar-plus me-2"></i>Agendar Cita
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Confirmación de Cita -->
+    <div class="modal fade" id="confirmationModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title"><i class="fas fa-check-circle me-2"></i>Cita Agendada Exitosamente</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-success">
+                        <h4 class="alert-heading"><i class="fas fa-envelope me-2"></i>Correo de confirmación enviado</h4>
+                        <p id="confirmationEmailContent"></p>
+                    </div>
+                    
+                    <div class="card mb-4">
+                        <div class="card-header bg-light">
+                            <h5 class="mb-0">Resumen de la Cita</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h6><i class="fas fa-user me-2"></i>Dueño</h6>
+                                    <p id="confirmationOwner"></p>
+                                    
+                                    <h6><i class="fas fa-phone me-2"></i>Contacto</h6>
+                                    <p id="confirmationPhone"></p>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6><i class="fas fa-paw me-2"></i>Mascota</h6>
+                                    <p id="confirmationPet"></p>
+                                    
+                                    <h6><i class="fas fa-calendar-alt me-2"></i>Cita</h6>
+                                    <p id="confirmationDateTime"></p>
+                                </div>
+                            </div>
+                            <hr>
+                            <h6><i class="fas fa-exclamation-triangle me-2"></i>Síntomas/Motivo</h6>
+                            <p id="confirmationSymptoms"></p>
+                        </div>
+                        <div class="card-footer text-center">
+                            <h4 class="text-success">Número de Ficha: <span id="ticketNumber" class="badge bg-success fs-4"></span></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" id="printConfirmation">
+                        <i class="fas fa-print me-2"></i>Imprimir
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Recuperación de Contraseña -->
+    <div class="modal fade" id="recoveryModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-warning">
+                    <h5 class="modal-title"><i class="fas fa-key me-2"></i>Recuperar Contraseña</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Ingresa tu nombre de usuario o correo electrónico para recuperar tu contraseña.</p>
+                    <div class="mb-3">
+                        <label for="recoveryUsername" class="form-label">Usuario o Correo</label>
+                        <input type="text" class="form-control" id="recoveryUsername">
+                    </div>
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle me-2"></i>Se enviarán instrucciones a tu correo electrónico registrado.
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-warning" id="sendRecovery">Enviar Instrucciones</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/script.js"></script>
+</body>
+</html>
